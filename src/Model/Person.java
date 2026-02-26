@@ -23,7 +23,13 @@ public class Person {
 
     @Override
     public String toString(){
-        return ("Person") // Допиши toString
+        return ("Person" + "\n" +
+                "name: " + name + "\n" +
+                "birthday: " + birthday + "\n" +
+                "hair color: " + hairColor + "\n" +
+                "nationality: " + nationality + "\n"+
+                "location: " + location + "\n");
+
     }
 }
 
