@@ -2,7 +2,7 @@ package Model;
 
 import java.time.LocalDateTime;
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
     private int id; // Должно генерироваться, сделай
     private String name;
     private Coordinates coordinates;
@@ -42,6 +42,18 @@ public class Movie {
         return name;
     }
 
+    public int getId(){
+        return id;
+    }
+
+    public int getOscarsCount(){
+        return oscarsCount;
+    }
+
+    public long getGoldenPalmCount(){
+        return goldenPalmCount;
+    }
+
     public void setId(int id){
         this.id = id;
     }
@@ -58,5 +70,10 @@ public class Movie {
                 "genre: " + genre + "\n" +
                 "mpaaRating: " + mpaaRating + "\n" +
                 "director: " + director);
+    }
+
+    @Override
+    public int compareTo(Movie anotherMovie){
+        return Integer.compare(this.getOscarsCount(),anotherMovie.getOscarsCount());
     }
 }
