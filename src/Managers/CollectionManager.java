@@ -1,9 +1,12 @@
-package Commands;
+package Managers;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
+
 import Model.Movie;
+import Model.Person;
 
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
@@ -21,7 +24,9 @@ public class CollectionManager {
                 "Количество элементов: " + movieList.size();
     }
 
-    //help
+    public String help(){
+
+    }
 
     public String show(){
         if (movieList.isEmpty()){
@@ -103,8 +108,30 @@ public class CollectionManager {
         return palm_count;
     }
 
-    //count_greater_than_director director
-    //filter_contains_name name
+    public int count_greater_than_director(Person director){
+        int count = 0;
+        for (Movie movie : movieList){
+            if (movie.getDirector().compareTo(director) > 0){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String filter_contains_name(String name){
+        if (movieList == null) {
+            return "Список пустой";
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Movie movie : movieList){
+                if (movie.getName().contains(name)){
+                    stringBuilder.append(movie.getName());
+                    stringBuilder.append("\n");
+                }
+            }
+            return stringBuilder.toString();
+        }
+    }
 }
 
 

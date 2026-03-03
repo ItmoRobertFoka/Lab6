@@ -58,6 +58,10 @@ public class Movie implements Comparable<Movie> {
         this.id = id;
     }
 
+    public Person getDirector(){
+        return director;
+    }
+
     @Override
     public String toString(){
         return ("Movie " + "\n" +

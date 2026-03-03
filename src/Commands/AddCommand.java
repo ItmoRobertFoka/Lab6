@@ -1,14 +1,13 @@
 package Commands;
 
+import Managers.CollectionManager;
 import Model.Movie;
 
 public class AddCommand implements Command{
     private CollectionManager collectionManager;
-    private Movie movie;
 
-    public AddCommand(CollectionManager collectionManager, Movie movie){
+    public AddCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
-        this.movie = movie;
     }
 
     @Override
@@ -20,5 +19,10 @@ public class AddCommand implements Command{
     @Override
     public String getDescription(){
         return "add: добавляет новый элемент в коллекцию";
+    }
+
+    @Override
+    public String getName(){
+        return name;
     }
 }

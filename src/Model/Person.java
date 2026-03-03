@@ -1,6 +1,6 @@
 package Model;
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String name;
     private java.util.Date birthday;
     private Color hairColor;
@@ -21,6 +21,10 @@ public class Person {
         this.location = location;
     }
 
+    public String getName(){
+        return name;
+    }
+
     @Override
     public String toString(){
         return ("Person" + "\n" +
@@ -30,6 +34,11 @@ public class Person {
                 "nationality: " + nationality + "\n"+
                 "location: " + location + "\n");
 
+    }
+
+    @Override
+    public int compareTo(Person anotherPerson){
+        return this.name.compareTo(anotherPerson.getName());
     }
 }
 
