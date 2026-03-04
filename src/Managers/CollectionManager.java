@@ -24,9 +24,9 @@ public class CollectionManager {
                 "Количество элементов: " + movieList.size();
     }
 
-    public String help(){
+   /** public String help(){
 
-    }
+    }**/
 
     public String show(){
         if (movieList.isEmpty()){
@@ -75,9 +75,13 @@ public class CollectionManager {
 
     }
 
-    public  Movie head(){
-        return movieList.getFirst();
+    public  String head(){
+        if (movieList == null){
+            return "Коллекция пуста";
+        } else {
+            return movieList.getFirst().toString();
         }
+    }
 
     public void add_if_min(Movie movie){
         if (movieList.isEmpty()){

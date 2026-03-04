@@ -1,0 +1,28 @@
+package Commands;
+
+import Managers.CollectionManager;
+
+public class ClearCommand implements Command {
+    private String name = "clear";
+    private CollectionManager collectionManager;
+
+    public ClearCommand(CollectionManager collectionManager){
+        this.collectionManager = collectionManager;
+    }
+
+    @Override
+    public String execute(){
+        collectionManager.clear();
+        return "Коллекция очищена";
+    }
+
+    @Override
+    public String getDescription(){
+        return "clear: Очищает коллекцию";
+    }
+
+    @Override
+    public String getName(){
+        return name;
+    }
+}

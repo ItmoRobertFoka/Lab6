@@ -3,12 +3,11 @@ package Commands;
 import Managers.CollectionManager;
 
 public class ShowCommand implements Command {
+    private String name = "show";
     private CollectionManager collectionManager;
-    private String name;
 
-    public ShowCommand(CollectionManager collectionManager, String name){
+    public ShowCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
-        this.name = name;
     }
 
     @Override
@@ -18,7 +17,7 @@ public class ShowCommand implements Command {
 
     @Override
     public String getDescription(){
-        return "show: выводит коллекцию фильмов";
+        return "show: Выводит в стандартный поток вывода все элементы коллекции в строковом представлении";
     }
 
     @Override
@@ -26,3 +25,5 @@ public class ShowCommand implements Command {
         return name;
     }
 }
+
+

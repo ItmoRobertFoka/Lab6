@@ -21,6 +21,7 @@ public class Movie implements Comparable<Movie> {
                  MpaaRating mpaaRating,
                  Person director
     ){
+        if (name == null) throw new IllegalArgumentException("Введите значение, имя не могут быть null");
         if (name.length() == 0) throw new IllegalArgumentException("Длинна имени должна быть больше 0");
         if (coordinates == null) throw new IllegalArgumentException("Введите значение, координаты не могут быть null");
         if (oscarsCount <= 0) throw new IllegalArgumentException("Количество оскаров должно быть больше 0");
