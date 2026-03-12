@@ -3,7 +3,7 @@ package Commands;
 import Managers.CollectionManager;
 
 public class ClearCommand implements Command {
-    private String name = "clear";
+    private final String name = "clear";
     private CollectionManager collectionManager;
 
     public ClearCommand(CollectionManager collectionManager){

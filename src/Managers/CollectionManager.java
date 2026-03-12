@@ -2,7 +2,7 @@ package Managers;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.HashMap;
+import Managers.CommandManager;
 import java.util.LinkedList;
 
 import Model.Movie;
@@ -24,10 +24,6 @@ public class CollectionManager {
                 "Количество элементов: " + movieList.size();
     }
 
-   /** public String help(){
-
-    }**/
-
     public String show(){
         if (movieList.isEmpty()){
             return "Коллекция пуста";
@@ -45,22 +41,24 @@ public class CollectionManager {
         movieList.add(movie);
     }
 
-    public void remove_by_id(int id){
+    public boolean remove_by_id(int id){
         for(int i = 0; i < movieList.size(); i++){
             if (movieList.get(i).getId() == id){
                 movieList.remove(i);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
-    public void updateId(Movie movie){
+    public String updateId(Movie movie){
         for(int i = 0; i < movieList.size(); i++){
             if (movieList.get(i).getId() == movie.getId()){
                 movieList.set(i, movie);
-                return;
+                return "Фильм с id: " + movie.getId() + " из коллекции успешно заменен";
             }
         }
+        return "В коллекции нет фильма с id: " + movie.getId();
     }
 
     public void clear(){
@@ -83,24 +81,28 @@ public class CollectionManager {
         }
     }
 
-    public void add_if_min(Movie movie){
+    public String add_if_min(Movie movie){
         if (movieList.isEmpty()){
             movie.setId(generateId());
             movieList.add(movie);
+            return "Фильм успешно добавлен";
         } else {
             Movie minMovie = Collections.min(movieList);
             if (movie.compareTo(minMovie) < 0){
                 movie.setId(generateId());
                 movieList.add(movie);
+                return "Фильм успешно добавлен";
             }
+            return "Фильм не добавлен, так как не является минимальным";
         }
     }
 
-    public void remove_greater(Movie anotherMovie){
+    public String remove_greater(Movie anotherMovie){
         if (movieList.isEmpty()){
-            return;
+            return "Список уже пустой";
         } else {
             movieList.removeIf(movie -> movie.compareTo(anotherMovie) > 0);
+            return "Все фильмы, значение которых больше заданного, были удалены";
         }
     }
 
@@ -114,6 +116,9 @@ public class CollectionManager {
 
     public int count_greater_than_director(Person director){
         int count = 0;
+        if (movieList.isEmpty()) {
+            return 0;
+        }
         for (Movie movie : movieList){
             if (movie.getDirector().compareTo(director) > 0){
                 count++;
@@ -123,7 +128,7 @@ public class CollectionManager {
     }
 
     public String filter_contains_name(String name){
-        if (movieList == null) {
+        if (movieList == null || movieList.isEmpty()) {
             return "Список пустой";
         } else {
             StringBuilder stringBuilder = new StringBuilder();
@@ -133,7 +138,7 @@ public class CollectionManager {
                     stringBuilder.append("\n");
                 }
             }
-            return stringBuilder.toString();
+            return "Фильмы содержащие заданную подстроку: " + stringBuilder;
         }
     }
 }

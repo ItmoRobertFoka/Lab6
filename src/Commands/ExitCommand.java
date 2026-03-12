@@ -3,7 +3,7 @@ package Commands;
 import Managers.CollectionManager;
 
 public class ExitCommand implements Command {
-    private String name = "exit";
+    private final String name = "exit";
     private CollectionManager collectionManager;
 
     public ExitCommand(CollectionManager collectionManager){
@@ -12,8 +12,9 @@ public class ExitCommand implements Command {
 
     @Override
     public String execute(){
+        System.out.println( "Программа завершена без сохранения");
         collectionManager.exit();
-        return "Программа завершена без сохранения";
+        return "";
     }
 
     @Override

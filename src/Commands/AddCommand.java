@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class AddCommand implements Command {
-    private String name = "add";
+    private final String name = "add";
     private CollectionManager collectionManager;
     private Scanner scanner;
     private MovieMaker movieMaker;

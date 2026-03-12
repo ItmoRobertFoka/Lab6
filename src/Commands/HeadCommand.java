@@ -3,7 +3,7 @@ package Commands;
 import Managers.CollectionManager;
 
 public class HeadCommand implements Command {
-    private String name = "head";
+    private final String name = "head";
     private CollectionManager collectionManager;
 
     public HeadCommand(CollectionManager collectionManager){
@@ -12,7 +12,7 @@ public class HeadCommand implements Command {
 
     @Override
     public String execute(){
-        return collectionManager.head();
+        return "Первый элемент коллекции: " + collectionManager.head();
     }
 
     @Override

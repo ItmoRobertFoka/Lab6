@@ -3,7 +3,7 @@ package Commands;
 import Managers.CollectionManager;
 
 public class ShowCommand implements Command {
-    private String name = "show";
+    private final String name = "show";
     private CollectionManager collectionManager;
 
     public ShowCommand(CollectionManager collectionManager){
@@ -12,7 +12,7 @@ public class ShowCommand implements Command {
 
     @Override
     public String execute(){
-        return collectionManager.show();
+        return "Коллекция: " + collectionManager.show();
     }
 
     @Override

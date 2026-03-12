@@ -3,7 +3,7 @@ package Commands;
 import Managers.CollectionManager;
 
 public class InfoCommand implements Command {
-    String name = "info";
+    private final String name = "info";
     private CollectionManager collectionManager;
 
     public InfoCommand(CollectionManager collectionManager){
