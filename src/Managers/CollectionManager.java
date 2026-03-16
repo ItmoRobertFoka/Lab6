@@ -1,16 +1,20 @@
 package Managers;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.Collections;
-import Managers.CommandManager;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 import Model.Movie;
 import Model.Person;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
     LocalDate creationMovieListDate = LocalDate.now();
+
 
     private int currentId = 1;
 

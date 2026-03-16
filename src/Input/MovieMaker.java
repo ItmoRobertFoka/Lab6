@@ -86,7 +86,6 @@ public class MovieMaker {
         return coordinates;
     }
 
-
     public int inputOscarCount(){
         System.out.println("Введите число Оскаров:");
         int oscarCount;

@@ -39,6 +39,10 @@ public class CommandManager {
         }
         return stringBuilder.toString();
     }
+
+    public String executeCommand(String command) {
+        return commandMap.get(command).execute();
+    }
 }
 
 

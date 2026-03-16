@@ -6,7 +6,7 @@ import Input.MovieMaker;
 import Model.Movie;
 
 public class UpdateIdCommand implements Command {
-    private final String name = "updateId";
+    private final String name = "update_id";
     private CollectionManager collectionManager;
     private Scanner scanner;
     private MovieMaker movieMaker;
