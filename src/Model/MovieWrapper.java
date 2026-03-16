@@ -1,19 +1,19 @@
 package Model;
 
-import java.util.List;
+import java.util.LinkedList;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public class MovieWrapper {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "movie")
-    private List<Movie> movies;
+    private LinkedList<Movie> movies;
 
-    public List<Movie> getMovies() {
+    public LinkedList<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(LinkedList<Movie> movies) {
         this.movies = movies;
     }
 }

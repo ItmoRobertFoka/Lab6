@@ -1,20 +1,48 @@
 package Managers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 import Model.Movie;
+import Model.MovieWrapper;
 import Model.Person;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
     LocalDate creationMovieListDate = LocalDate.now();
 
+    public void loadFromFile(String filmName) {
+        if (filmName == null) {
+            return;
+        }
+        StringBuilder dataFile = new StringBuilder();
+        try {
+            Scanner movieScanner = new Scanner(new File(filmName));
+            while (movieScanner.hasNextLine()) {
+                dataFile.append(movieScanner.nextLine()).append("\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка при чтении файла: " + e.getMessage());
+            return;
+        }
+
+        XmlMapper xmlMapper = new XmlMapper();
+        try {
+            MovieWrapper wrapper = xmlMapper.readValue(dataFile.toString(), MovieWrapper.class);
+            if (wrapper.getMovies() != null) {
+                movieList.addAll(wrapper.getMovies());
+            }
+            System.out.println("Коллекция успешно загружена");
+        } catch (IOException e) {
+            System.out.println("Ошибка при парсинге XML файла: " + e.getMessage());
+        }
+    }
 
     private int currentId = 1;
 

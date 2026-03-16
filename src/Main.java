@@ -7,14 +7,15 @@ public class Main {
     public static void main(String[] args) {
         String filmName = System.getenv("MOVIE_FILE");
 
-        if (filmName == null) {
-            System.out.println("Ошибка, переменная окружения MOVIE_FILE не задана");
-            return;
-        }
-
         CollectionManager collectionManager = new CollectionManager();
         Scanner userScanner = new Scanner(System.in);
         CommandManager commandManager = new CommandManager(collectionManager, userScanner);
+
+        if (filmName == null) {
+            System.out.println("Ошибка, переменная окружения MOVIE_FILE не задана, коллекция пустая");;
+        } else {
+            collectionManager.loadFromFile(filmName);
+        }
 
         while (true) {
             System.out.println("\n" + "Введите команду: ");
