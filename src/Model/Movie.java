@@ -13,6 +13,8 @@ public class Movie implements Comparable<Movie> {
     private MpaaRating mpaaRating;
     private Person director;
 
+    public Movie() {}
+
     public Movie(String name,
                  Coordinates coordinates,
                  int oscarsCount,
@@ -58,6 +60,39 @@ public class Movie implements Comparable<Movie> {
     public void setId(int id){
         this.id = id;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setOscarsCount(int oscarsCount) {
+        this.oscarsCount = oscarsCount;
+    }
+
+    public void setGoldenPalmCount(long goldenPalmCount) {
+        this.goldenPalmCount = goldenPalmCount;
+    }
+
+    public void setGenre(MovieGenre genre) {
+        this.genre = genre;
+    }
+
+    public void setMpaaRating(MpaaRating mpaaRating) {
+        this.mpaaRating = mpaaRating;
+    }
+
+    public void setDirector(Person director) {
+        this.director = director;
+    }
+
 
     public Person getDirector(){
         return director;

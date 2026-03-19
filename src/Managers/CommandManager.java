@@ -21,7 +21,7 @@ public class CommandManager {
         registerCommand(new UpdateIdCommand(collectionManager, scanner));
         registerCommand(new RemoveByIdCommand(collectionManager,scanner));
         registerCommand(new ClearCommand(collectionManager));
-        //registerCommand(new SaveCommand());
+        registerCommand(new SaveCommand(collectionManager));
         //registerCommand(new ExecuteScriptCommand());
         registerCommand(new ExitCommand(collectionManager));
         registerCommand(new HeadCommand(collectionManager));

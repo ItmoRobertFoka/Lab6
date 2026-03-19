@@ -9,6 +9,12 @@ public class MovieWrapper {
     @JacksonXmlProperty(localName = "movie")
     private LinkedList<Movie> movies;
 
+    public MovieWrapper() {}
+
+    public MovieWrapper(LinkedList<Movie> movieList) {
+        this.movies = movieList;
+    }
+
     public LinkedList<Movie> getMovies() {
         return movies;
     }

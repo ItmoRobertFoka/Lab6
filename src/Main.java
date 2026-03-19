@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String filmName = System.getenv("MOVIE_FILE");
+        String fileName = System.getenv("MOVIE_FILE");
 
-        CollectionManager collectionManager = new CollectionManager();
+        CollectionManager collectionManager = new CollectionManager(fileName);
         Scanner userScanner = new Scanner(System.in);
         CommandManager commandManager = new CommandManager(collectionManager, userScanner);
 
-        if (filmName == null) {
+        if (fileName == null) {
             System.out.println("Ошибка, переменная окружения MOVIE_FILE не задана, коллекция пустая");;
         } else {
-            collectionManager.loadFromFile(filmName);
+            collectionManager.loadFromFile(fileName);
         }
 
         while (true) {

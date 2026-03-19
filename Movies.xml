@@ -1,76 +1,29 @@
-<movies>
-    <movie>
-        <id>8</id>
-        <name>The Great Gatsby</name>
-        <coordinates>
-            <x>14</x>
-            <y>9</y>
-        </coordinates>
-        <creationDate>2007-04-18T20:35:00</creationDate>
-        <oscarCount>5</oscarCount>
-        <goldenPalmCount>7</goldenPalmCount>
-        <genre>TRAGEDY</genre>
-        <mpaaRating>R</mpaaRating>
-        <director>
-            <name>Christopher Nolan</name>
-            <birthday>1977-03-08</birthday>
-            <hairColor>BLACK</hairColor>
-            <nationality>FRANCE</nationality>
-            <location>
-                <x>245</x>
-                <y>345.453</y>
-                <name>USA</name>
-            </location>
-        </director>
-    </movie>
-
-    <movie>
-        <id>9</id>
-        <name>Inception</name>
-        <coordinates>
-            <x>22</x>
-            <y>18</y>
-        </coordinates>
-        <creationDate>2010-07-16T15:20:00</creationDate>
-        <oscarCount>8</oscarCount>
-        <goldenPalmCount>4</goldenPalmCount>
-        <genre>SCI_FI</genre>
-        <mpaaRating>PG_13</mpaaRating>
-        <director>
-            <name>Christopher Nolan</name>
-            <birthday>1977-03-08</birthday>
-            <hairColor>BLACK</hairColor>
-            <nationality>USA</nationality>
-            <location>
-                <x>100</x>
-                <y>200.5</y>
-                <name>Los Angeles</name>
-            </location>
-        </director>
-    </movie>
-
-    <movie>
-        <id>10</id>
-        <name>Interstellar</name>
-        <coordinates>
-            <x>50</x>
-            <y>75</y>
-        </coordinates>
-        <creationDate>2014-11-07T12:00:00</creationDate>
-        <oscarCount>9</oscarCount>
-        <goldenPalmCount>5</goldenPalmCount>
-        <genre>ADVENTURE</genre>
-        <mpaaRating>PG_13</mpaaRating>
-        <director>
-            <name>Christopher Nolan</name>
-            <birthday>1977-03-08</birthday>
-            <hairColor>BLACK</hairColor>
-            <nationality>USA</nationality>
-            <location>
-                <x>120</x>
-                <y>250.75</y>
-                <name>Houston</name>
-            </location>
-        </director>
-    </movie>
-</movies>
+<MovieWrapper>
+  <movie>
+    <id>1</id>
+    <name>The Great Gatsby</name>
+    <oscarsCount>5</oscarsCount>
+    <goldenPalmCount>7</goldenPalmCount>
+    <director>
+      <name>Christopher Nolan</name>
+    </director>
+  </movie>
+  <movie>
+    <id>2</id>
+    <name>Inception</name>
+    <oscarsCount>8</oscarsCount>
+    <goldenPalmCount>4</goldenPalmCount>
+    <director>
+      <name>Christopher Nolan</name>
+    </director>
+  </movie>
+  <movie>
+    <id>3</id>
+    <name>Interstellar</name>
+    <oscarsCount>9</oscarsCount>
+    <goldenPalmCount>5</goldenPalmCount>
+    <director>
+      <name>Christopher Nolan</name>
+    </director>
+  </movie>
+</MovieWrapper>

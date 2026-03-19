@@ -267,7 +267,7 @@ public class MovieMaker {
         while (true){
             locationName = scanner.nextLine().trim();
             if (locationName.isEmpty()){
-                continue;
+                break;
             }
             break;
         }

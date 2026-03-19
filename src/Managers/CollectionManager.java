@@ -1,6 +1,8 @@
 package Managers;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Collections;
@@ -10,13 +12,17 @@ import java.util.Scanner;
 import Model.Movie;
 import Model.MovieWrapper;
 import Model.Person;
-import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
     LocalDate creationMovieListDate = LocalDate.now();
+    String fileName;
 
+    public CollectionManager(String fileName) {
+        this.fileName = fileName;
+    }
     public void loadFromFile(String filmName) {
         if (filmName == null) {
             return;
@@ -33,10 +39,14 @@ public class CollectionManager {
         }
 
         XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.findAndRegisterModules();
         try {
             MovieWrapper wrapper = xmlMapper.readValue(dataFile.toString(), MovieWrapper.class);
             if (wrapper.getMovies() != null) {
                 movieList.addAll(wrapper.getMovies());
+                for (Movie movie: movieList) {
+                    movie.setId(generateId());
+                }
             }
             System.out.println("Коллекция успешно загружена");
         } catch (IOException e) {
@@ -65,7 +75,7 @@ public class CollectionManager {
         for (Movie movie : movieList){
             result.append(movie.getName()).append("\n");
         }
-        return result.toString();
+        return "\n" + result.toString();
     }
 
     public void add(Movie movie){
@@ -97,7 +107,23 @@ public class CollectionManager {
         movieList.clear();
     }
 
-    //save
+    public String save() {
+        if (fileName == null) {
+            return "Ошибка, имя файла не задано";
+        }
+        try {
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(fileName));
+            MovieWrapper movieWrapper = new MovieWrapper(movieList);
+            XmlMapper mapper = new XmlMapper();
+            mapper.findAndRegisterModules();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.writeValue(bufferedOutputStream, movieWrapper);
+            return "Файл успешно сохранен";
+        } catch (IOException e) {
+            return "Ошибка сохранения файла: " + e.getMessage();
+        }
+    }
+
     //executeScript
 
     public void exit(){
