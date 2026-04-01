@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import Input.MovieMaker;
 import Model.Movie;
 import Model.MovieWrapper;
 import Model.Person;
@@ -18,7 +19,11 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
     LocalDate creationMovieListDate = LocalDate.now();
+
+    Scanner userScanner = new Scanner(System.in);
+
     String fileName;
+    MovieMaker movieMaker = new MovieMaker(userScanner);
 
     public CollectionManager(String fileName) {
         this.fileName = fileName;
@@ -93,14 +98,18 @@ public class CollectionManager {
         return false;
     }
 
-    public String updateId(Movie movie){
+    public boolean updateId(int id){
         for(int i = 0; i < movieList.size(); i++){
-            if (movieList.get(i).getId() == movie.getId()){
-                movieList.set(i, movie);
-                return "Фильм с id: " + movie.getId() + " из коллекции успешно заменен";
+            if (movieList.get(i).getId() == id){
+                System.out.println("Введите данные нового фильма с id: " + id);
+                Movie newMovie = movieMaker.createMovie();
+                newMovie.setId(id);
+                movieList.set(i, newMovie);
+                return true;
             }
         }
-        return "В коллекции нет фильма с id: " + movie.getId();
+        System.out.println("Фильма с id: " + id + " нет в коллекции");
+        return false;
     }
 
     public void clear(){
@@ -132,7 +141,7 @@ public class CollectionManager {
     }
 
     public  String head(){
-        if (movieList == null){
+        if (movieList == null || movieList.isEmpty()){
             return "Коллекция пуста";
         } else {
             return movieList.getFirst().toString();

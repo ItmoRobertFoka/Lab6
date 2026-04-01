@@ -1,5 +1,6 @@
 import Managers.CollectionManager;
 import Managers.CommandManager;
+import Model.Person;
 
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class Main {
         } else {
             collectionManager.loadFromFile(fileName);
         }
+
 
         while (true) {
             System.out.println("\n" + "Введите команду: ");

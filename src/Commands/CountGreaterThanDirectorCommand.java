@@ -16,7 +16,6 @@ public class CountGreaterThanDirectorCommand implements Command {
 
     @Override
     public String execute() {
-        System.out.println("Введите директора: ");
         return "Колличество фильмов: " + collectionManager.count_greater_than_director(movieMaker.inputDirector());
     }
 

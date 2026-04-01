@@ -1,11 +1,14 @@
 package Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 
 public class Movie implements Comparable<Movie> {
-    private int id; // Должно генерироваться, сделай
+    private int id;
     private String name;
     private Coordinates coordinates;
+    @JsonFormat (pattern = "dd.MM.yyyy HH:mm")
     private java.time.LocalDateTime creationDate; // Должно генерироваться, сделай
     private int oscarsCount;
     private Long goldenPalmCount;
@@ -39,6 +42,7 @@ public class Movie implements Comparable<Movie> {
         this.genre = genre;
         this.mpaaRating = mpaaRating;
         this.director = director;
+        this.creationDate = LocalDateTime.now();
     }
 
     public String getName(){

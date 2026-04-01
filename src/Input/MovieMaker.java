@@ -2,9 +2,9 @@ package Input;
 
 import Model.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MovieMaker {
@@ -180,25 +180,24 @@ public class MovieMaker {
 
         System.out.println("Введите имя:");
         String directorName;
-        while (true){
+        while (true) {
             directorName = scanner.nextLine().trim();
-            if (directorName.isEmpty()){
+            if (directorName.isEmpty() || directorName == null) {
                 System.out.println("Ошибка, имя не может быть длинны 0, введите имя");
                 continue;
             }
             break;
         }
 
-
-        Date birthday;
-        SimpleDateFormat simplDate = new SimpleDateFormat("dd.MM.yyyy");
+        LocalDate birthday;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true){
             System.out.println("Введите дату рождения(в формате dd.MM.yyyy):");
             String input = scanner.nextLine().trim();
             try{
-                birthday = simplDate.parse(input);
+                birthday = LocalDate.parse(input, formatter);
                 break;
-            } catch (ParseException e){
+            } catch (DateTimeParseException e){
                 System.out.println("Ошибка, введите дату в формате dd.MM.yyyy");
             }
         }

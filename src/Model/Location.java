@@ -27,4 +27,8 @@ public class Location {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        return "x = " + x + ", y = " + y + ", location name: " + name;
+    }
 }

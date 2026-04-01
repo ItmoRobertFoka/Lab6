@@ -2,28 +2,34 @@
   <movie>
     <id>1</id>
     <name>The Great Gatsby</name>
+    <creationDate>11.10.2022 22:22</creationDate>
     <oscarsCount>5</oscarsCount>
     <goldenPalmCount>7</goldenPalmCount>
     <director>
       <name>Christopher Nolan</name>
+      <birthday>23.10.1997</birthday>
     </director>
   </movie>
   <movie>
     <id>2</id>
     <name>Inception</name>
+    <creationDate/>
     <oscarsCount>8</oscarsCount>
     <goldenPalmCount>4</goldenPalmCount>
     <director>
       <name>Christopher Nolan</name>
+      <birthday/>
     </director>
   </movie>
   <movie>
     <id>3</id>
     <name>Interstellar</name>
+    <creationDate/>
     <oscarsCount>9</oscarsCount>
     <goldenPalmCount>5</goldenPalmCount>
     <director>
       <name>Christopher Nolan</name>
+      <birthday/>
     </director>
   </movie>
 </MovieWrapper>

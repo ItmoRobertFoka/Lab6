@@ -4,7 +4,7 @@ import Managers.CollectionManager;
 import java.util.Scanner;
 
 public class RemoveByIdCommand implements Command {
-    private final String name = "remove by id";
+    private final String name = "remove_by_id";
     private CollectionManager collectionManager;
     private Scanner scanner;
 
