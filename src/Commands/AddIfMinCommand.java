@@ -2,17 +2,22 @@ package Commands;
 
 import Input.MovieMaker;
 import Managers.CollectionManager;
+import Managers.InputManager;
 
 import java.util.Scanner;
 
+/**
+ * Команда, которая добавляет фильм в коллецию,
+ * если его значение меньше минимального.
+ */
 public class AddIfMinCommand implements Command {
     private final String name = "add_if_min";
     private CollectionManager collectionManager;
     private MovieMaker movieMaker;
 
-    public AddIfMinCommand(CollectionManager collectionManager, Scanner scanner) {
+    public AddIfMinCommand(CollectionManager collectionManager, InputManager inputManager) {
         this.collectionManager = collectionManager;
-        this.movieMaker = new MovieMaker(scanner);
+        this.movieMaker = new MovieMaker(inputManager);
     }
 
     @Override

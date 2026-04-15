@@ -1,5 +1,9 @@
 package Model;
 
+/**
+ * Базовый класс, содержит рейтинги фильмов
+ */
+
 public enum MpaaRating {
     G,
     PG,

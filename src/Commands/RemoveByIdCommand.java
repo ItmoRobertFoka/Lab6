@@ -1,16 +1,20 @@
 package Commands;
 
 import Managers.CollectionManager;
-import java.util.Scanner;
+import Managers.InputManager;
 
+/**
+ * Команда, которая удаляет фильм из коллекции по его id.
+ * Если в коллекции не было фильма с заданным id, коллекция останется без изменений
+ */
 public class RemoveByIdCommand implements Command {
     private final String name = "remove_by_id";
     private CollectionManager collectionManager;
-    private Scanner scanner;
+    private InputManager inputManager;
 
-    public RemoveByIdCommand(CollectionManager collectionManager, Scanner scanner){
+    public RemoveByIdCommand(CollectionManager collectionManager, InputManager inputManager){
         this.collectionManager = collectionManager;
-        this.scanner = scanner;
+        this.inputManager = inputManager;
     }
 
     @Override
@@ -19,7 +23,7 @@ public class RemoveByIdCommand implements Command {
         Integer removeId;
         while (true) {
             try {
-                removeId = Integer.parseInt(scanner.nextLine().trim());
+                removeId = Integer.parseInt(inputManager.nextLine().trim());
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка, введите корректное число");

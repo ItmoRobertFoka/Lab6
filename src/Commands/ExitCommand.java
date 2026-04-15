@@ -2,6 +2,9 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая завершает программу без сохранения изменений.
+ */
 public class ExitCommand implements Command {
     private final String name = "exit";
     private CollectionManager collectionManager;

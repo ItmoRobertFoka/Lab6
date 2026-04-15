@@ -2,6 +2,10 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая выводит все элементы коллекции в строковом представлении.
+ */
+
 public class ShowCommand implements Command {
     private final String name = "show";
     private CollectionManager collectionManager;

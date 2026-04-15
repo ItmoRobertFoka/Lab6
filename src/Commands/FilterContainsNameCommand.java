@@ -1,23 +1,25 @@
 package Commands;
 
 import Managers.CollectionManager;
+import Managers.InputManager;
 
-import java.util.Scanner;
-
+/**
+ * Команда, которая выводит элементы, значение поля name которых содержит заданную подстроку
+ */
 public class FilterContainsNameCommand implements Command {
     private final String name = "filter_contains_name";
     private CollectionManager collectionManager;
-    private Scanner scanner;
+    private InputManager inputManager;
 
-    public FilterContainsNameCommand(CollectionManager collectionManager, Scanner scanner) {
+    public FilterContainsNameCommand(CollectionManager collectionManager, InputManager inputManager) {
         this.collectionManager = collectionManager;
-        this.scanner = scanner;
+        this.inputManager = inputManager;
     }
 
     @Override
     public String execute() {
         System.out.println("Введите название фильма: ");
-        return collectionManager.filter_contains_name(scanner.nextLine().trim());
+        return collectionManager.filter_contains_name(inputManager.nextLine().trim());
     }
 
     @Override

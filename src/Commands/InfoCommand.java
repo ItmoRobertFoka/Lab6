@@ -2,6 +2,9 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая выводит информацию о коллекции
+ */
 public class InfoCommand implements Command {
     private final String name = "info";
     private CollectionManager collectionManager;

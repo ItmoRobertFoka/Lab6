@@ -1,5 +1,6 @@
 package Input;
 
+import Managers.InputManager;
 import Model.*;
 
 import java.time.LocalDate;
@@ -7,11 +8,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Создает объекты Movie на основе пользовательского ввода
+ */
 public class MovieMaker {
-    private Scanner scanner;
+    private InputManager inputManager;
 
-    public MovieMaker(Scanner scanner){
-        this.scanner = scanner;
+    public MovieMaker(InputManager inputManager){
+        this.inputManager = inputManager    ;
     }
 
     public Movie createMovie(){
@@ -27,10 +31,12 @@ public class MovieMaker {
     }
 
     public String inputName(){
-        System.out.println("Введите название фильма");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите название фильма");
+        }
         String name;
         while (true){
-            name = scanner.nextLine().trim();
+            name = inputManager.nextLine().trim();
             if (name.isEmpty()){
                 System.out.println("Ошибка, длина имени должна быть больше 0");
                 continue;
@@ -43,11 +49,13 @@ public class MovieMaker {
 
 
     public Coordinates inputCoordinates(){
-        System.out.println("Введите координату х:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите координату х:");
+        }
         Float x;
         while (true){
             try {
-                x = Float.parseFloat(scanner.nextLine().trim());
+                x = Float.parseFloat(inputManager.nextLine().trim());
                 if (x > 191){
                     System.out.println("Ошибка х должен быть меньше 191");
                     continue;
@@ -58,11 +66,13 @@ public class MovieMaker {
             }
         }
 
-        System.out.println("Введите координату у:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите координату У:");
+        }
         Double y;
         while (true) {
             try {
-                y = Double.parseDouble(scanner.nextLine().trim());
+                y = Double.parseDouble(inputManager.nextLine().trim());
                 if (y > 500){
                     System.out.println("Ошибка y должен быть меньше 500");
                     continue;
@@ -87,11 +97,13 @@ public class MovieMaker {
     }
 
     public int inputOscarCount(){
-        System.out.println("Введите число Оскаров:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите число Оскаров:");
+        }
         int oscarCount;
         while (true){
             try{
-                oscarCount = Integer.parseInt(scanner.nextLine().trim());
+                oscarCount = Integer.parseInt(inputManager.nextLine().trim());
                 if (oscarCount <= 0){
                     System.out.println("Колличество Оскоров должно быть больше 0");
                     continue;
@@ -107,11 +119,13 @@ public class MovieMaker {
 
 
     public long inputGoldenPalmCount(){
-        System.out.println("Введите число Золотых пальм:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите число Золотых пальм:");
+        }
         Long goldenPalmCount;
         while (true){
             try {
-                goldenPalmCount = Long.parseLong(scanner.nextLine().trim());
+                goldenPalmCount = Long.parseLong(inputManager.nextLine().trim());
                 if (goldenPalmCount <= 0) {
                     System.out.println("Количество Золотых пальм должно быть больше 0");
                     continue;
@@ -127,13 +141,16 @@ public class MovieMaker {
 
 
     public MovieGenre inputMovieGenre(){
-        System.out.println("Выберете из доступных жанров:");
-        for (MovieGenre movieGenre : MovieGenre.values()){
-            System.out.println("- " + movieGenre);
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Выберете из доступных жанров:");
+            for (MovieGenre movieGenre : MovieGenre.values()){
+                System.out.println("- " + movieGenre);
+            }
         }
+
         MovieGenre movieGenre;
         while (true){
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = inputManager.nextLine().trim().toUpperCase();
             if (input.isEmpty()){
                 movieGenre = null;
                 break;
@@ -151,13 +168,16 @@ public class MovieMaker {
 
 
     public MpaaRating inputMpaaRating(){
-        System.out.println("Выберите из доступных рейтингов:");
-        for (MpaaRating mpaaRating : MpaaRating.values()){
-            System.out.println("- " + mpaaRating);
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Выберите из доступных рейтингов:");
+            for (MpaaRating mpaaRating : MpaaRating.values()){
+                System.out.println("- " + mpaaRating);
+            }
         }
+
         MpaaRating mpaaRating;
         while (true){
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = inputManager.nextLine().trim().toUpperCase();
             if (input.isEmpty()){
                 mpaaRating = null;
                 break;
@@ -175,13 +195,17 @@ public class MovieMaker {
 
 
     public Person inputDirector(){
-        System.out.println("Введите директора:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите директора:");
+        }
         Person director;
 
-        System.out.println("Введите имя:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите имя:");
+        }
         String directorName;
         while (true) {
-            directorName = scanner.nextLine().trim();
+            directorName = inputManager.nextLine().trim();
             if (directorName.isEmpty() || directorName == null) {
                 System.out.println("Ошибка, имя не может быть длинны 0, введите имя");
                 continue;
@@ -192,8 +216,10 @@ public class MovieMaker {
         LocalDate birthday;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         while (true){
-            System.out.println("Введите дату рождения(в формате dd.MM.yyyy):");
-            String input = scanner.nextLine().trim();
+            if (!inputManager.isScriptMode()) {
+                System.out.println("Введите дату рождения(в формате dd.MM.yyyy):");
+            }
+            String input = inputManager.nextLine().trim();
             try{
                 birthday = LocalDate.parse(input, formatter);
                 break;
@@ -202,14 +228,16 @@ public class MovieMaker {
             }
         }
 
-
-        System.out.println("Выберите цвет волос из предложенных:");
-        for (Color color : Color.values()){
-            System.out.println("- " + color);
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Выберите цвет волос из предложенных:");
+            for (Color color : Color.values()){
+                System.out.println("- " + color);
+            }
         }
+
         Color color;
         while (true){
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = inputManager.nextLine().trim().toUpperCase();
             if (input.isEmpty()){
                 color = null;
                 break;
@@ -222,13 +250,16 @@ public class MovieMaker {
             }
         }
 
-        System.out.println("Введите национальность из доступных:");
-        for (Country country : Country.values()){
-            System.out.println("- " + country);
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите национальность из доступных:");
+            for (Country country : Country.values()){
+                System.out.println("- " + country);
+            }
         }
+
         Country nationality;
         while (true){
-            String input = scanner.nextLine().trim().toUpperCase();
+            String input = inputManager.nextLine().trim().toUpperCase();
             try {
                 nationality = Country.valueOf(input);
                 break;
@@ -237,34 +268,42 @@ public class MovieMaker {
             }
         }
 
-        System.out.println("Введите локацию:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите локацию:");
+        }
         Location location;
-        System.out.println("Введите х:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите x:");
+        }
         double locationX;
         while (true){
             try {
-                locationX = Double.parseDouble(scanner.nextLine().trim());
+                locationX = Double.parseDouble(inputManager.nextLine().trim());
                 break;
             } catch (NumberFormatException e){
                 System.out.println("Ошибка, введите значение в формате double");
             }
         }
 
-        System.out.println("Введите y:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите y:");
+        }
         float locationY;
         while (true){
             try {
-                locationY = Float.parseFloat(scanner.nextLine().trim());
+                locationY = Float.parseFloat(inputManager.nextLine().trim());
                 break;
             } catch (NumberFormatException e){
                 System.out.println("Ошибка, введите значение в формате float");
             }
         }
 
-        System.out.println("Введите название места:");
+        if (!inputManager.isScriptMode()) {
+            System.out.println("Введите название места:");
+        }
         String locationName;
         while (true){
-            locationName = scanner.nextLine().trim();
+            locationName = inputManager.nextLine().trim();
             if (locationName.isEmpty()){
                 break;
             }

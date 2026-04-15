@@ -2,6 +2,9 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, удаляющая все элементы из коллекции.
+ */
 public class ClearCommand implements Command {
     private final String name = "clear";
     private CollectionManager collectionManager;

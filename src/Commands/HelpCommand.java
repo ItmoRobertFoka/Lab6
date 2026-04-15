@@ -2,6 +2,9 @@ package Commands;
 
 import Managers.CommandManager;
 
+/**
+ * Команда, которая выводит справку по доступным командам.
+ */
 public class HelpCommand implements Command {
     private final String name = "help";
     private CommandManager commandManager;

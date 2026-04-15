@@ -2,19 +2,20 @@ package Commands;
 
 import Input.MovieMaker;
 import Managers.CollectionManager;
-import java.util.Scanner;
+import Managers.InputManager;
 
-
+/**
+ * Команда, которая добавляет фильм в коллекцию.
+ * Использует динамический ввод.
+ */
 public class AddCommand implements Command {
     private final String name = "add";
     private CollectionManager collectionManager;
-    private Scanner scanner;
     private MovieMaker movieMaker;
 
-    public AddCommand(CollectionManager collectionManager, Scanner scanner){
+    public AddCommand(CollectionManager collectionManager, InputManager inputManager){
         this.collectionManager = collectionManager;
-        this.scanner = scanner;
-        this.movieMaker = new MovieMaker(scanner);
+        this.movieMaker = new MovieMaker(inputManager);
     }
 
    @Override

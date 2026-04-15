@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Базовый класс, содержит жанры фильмов
+ */
 public enum MovieGenre {
     WESTERN,
     ADVENTURE,

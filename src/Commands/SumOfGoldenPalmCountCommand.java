@@ -2,6 +2,10 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая суммирует все значения поля golden_palm_count
+ * у всех фильмов в коллекции.
+ */
 public class SumOfGoldenPalmCountCommand implements Command {
     private String name = "sum_of_golden_palm_count";
     private CollectionManager collectionManager;

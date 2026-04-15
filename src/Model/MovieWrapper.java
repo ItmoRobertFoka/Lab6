@@ -4,6 +4,13 @@ import java.util.LinkedList;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
+/**
+ * Класс-обёртка для коллекции фильмов.
+ *
+ * Используется для корректной сериализации и десериализации
+ * списка объектов Movie при работе с XML.
+ */
+
 public class MovieWrapper {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "movie")

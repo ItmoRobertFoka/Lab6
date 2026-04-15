@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+
 import Input.MovieMaker;
 import Model.Movie;
 import Model.MovieWrapper;
@@ -16,17 +17,21 @@ import Model.Person;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+/**
+ * Управляет коллекцией.
+ * Предоставляет операции над коллекцией.
+ */
+
 public class CollectionManager {
     public LinkedList<Movie> movieList = new LinkedList<>();
     LocalDate creationMovieListDate = LocalDate.now();
 
-    Scanner userScanner = new Scanner(System.in);
-
     String fileName;
-    MovieMaker movieMaker = new MovieMaker(userScanner);
+    MovieMaker movieMaker;
 
-    public CollectionManager(String fileName) {
+    public CollectionManager(String fileName, InputManager inputManager) {
         this.fileName = fileName;
+        this.movieMaker = new MovieMaker(inputManager);
     }
     public void loadFromFile(String filmName) {
         if (filmName == null) {
@@ -78,7 +83,7 @@ public class CollectionManager {
 
         StringBuilder result = new StringBuilder();
         for (Movie movie : movieList){
-            result.append(movie.getName()).append("\n");
+            result.append(movie.toString()).append("\n");
         }
         return "\n" + result.toString();
     }
@@ -98,17 +103,17 @@ public class CollectionManager {
         return false;
     }
 
-    public boolean updateId(int id){
-        for(int i = 0; i < movieList.size(); i++){
-            if (movieList.get(i).getId() == id){
-                System.out.println("Введите данные нового фильма с id: " + id);
+    public boolean updateId(int id) {
+
+        for (int i = 0; i < movieList.size(); i++) {
+            if (movieList.get(i).getId() == id) {
                 Movie newMovie = movieMaker.createMovie();
                 newMovie.setId(id);
                 movieList.set(i, newMovie);
                 return true;
             }
         }
-        System.out.println("Фильма с id: " + id + " нет в коллекции");
+
         return false;
     }
 

@@ -2,6 +2,10 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая выводит первый элемент коллекции.
+ * Если в коллекции нет элементов, то выведет, что коллекция пуста.
+ */
 public class HeadCommand implements Command {
     private final String name = "head";
     private CollectionManager collectionManager;

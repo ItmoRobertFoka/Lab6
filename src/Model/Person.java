@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
+/**
+ * Базовый класс,представляющий человека.
+ * Содержит характеристики человека.
+ */
+
 public class Person implements Comparable<Person>{
     private String name;
     @JsonFormat(pattern = "dd.MM.yyyy")

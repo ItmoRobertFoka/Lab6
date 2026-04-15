@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
+/**
+ * Базовый класс, описывающий фильм
+ * Содержит основные характеристики фильма
+ */
+
+
 public class Movie implements Comparable<Movie> {
     private int id;
     private String name;

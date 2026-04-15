@@ -1,5 +1,8 @@
 package Model;
 
+/**
+ * Базовый класс, содержит информацию о локации
+ */
 public class Location {
     private double x;
     private Float y;

@@ -2,6 +2,9 @@ package Commands;
 
 import Managers.CollectionManager;
 
+/**
+ * Команда, которая сохраняет коллекцию в файл.
+ */
 public class SaveCommand implements Command {
     private final String name = "save";
     private CollectionManager collectionManager;
