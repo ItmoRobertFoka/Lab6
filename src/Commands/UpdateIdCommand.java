@@ -26,10 +26,7 @@ public class UpdateIdCommand implements Command {
     public String execute() {
 
         try {
-            System.out.println("Введите id фильма:");
-
             int id = Integer.parseInt(inputManager.nextLine().trim());
-
             boolean updated = collectionManager.updateId(id);
 
             if (updated) {

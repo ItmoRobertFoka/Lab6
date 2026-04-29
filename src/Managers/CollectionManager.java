@@ -17,6 +17,7 @@ import Model.Person;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+
 /**
  * Управляет коллекцией.
  * Предоставляет операции над коллекцией.
@@ -54,17 +55,26 @@ public class CollectionManager {
             MovieWrapper wrapper = xmlMapper.readValue(dataFile.toString(), MovieWrapper.class);
             if (wrapper.getMovies() != null) {
                 movieList.addAll(wrapper.getMovies());
-                for (Movie movie: movieList) {
-                    movie.setId(generateId());
-                }
             }
             System.out.println("Коллекция успешно загружена");
+            updateCurrentId();
         } catch (IOException e) {
             System.out.println("Ошибка при парсинге XML файла: " + e.getMessage());
         }
     }
 
-    private int currentId = 1;
+
+    int currentId = 0;
+
+    public void updateCurrentId() {
+        int max = 0;
+        for (Movie movie : movieList) {
+            if (movie.getId() > max) {
+                max = movie.getId();
+            }
+        }
+        currentId = max + 1;
+    }
 
     public int generateId(){
         return currentId++;
@@ -137,8 +147,6 @@ public class CollectionManager {
             return "Ошибка сохранения файла: " + e.getMessage();
         }
     }
-
-    //executeScript
 
     public void exit(){
         System.exit(0);

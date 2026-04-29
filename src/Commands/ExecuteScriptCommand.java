@@ -16,7 +16,6 @@ public class ExecuteScriptCommand implements Command {
     @Override
     public String execute() {
         try {
-            System.out.println("Введите имя файла скрипта:");
             String fileName = inputManager.nextLine();
 
             inputManager.pushFile(fileName);

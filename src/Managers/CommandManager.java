@@ -12,12 +12,14 @@ import java.util.Scanner;
  */
 public class CommandManager {
     public HashMap<String, Command> commandMap = new HashMap<>();
+    private InputManager inputManager;
 
     public void registerCommand(Command command){
         commandMap.put(command.getName(), command);
     }
 
     public CommandManager(CollectionManager collectionManager, InputManager inputManager){
+        this.inputManager = inputManager;
         registerCommand(new HelpCommand(this));
         registerCommand(new InfoCommand(collectionManager));
         registerCommand(new ShowCommand(collectionManager));
@@ -44,8 +46,19 @@ public class CommandManager {
         return stringBuilder.toString();
     }
 
-    public String executeCommand(String command) {
-        return commandMap.get(command).execute();
+    public String executeCommand(String line) {
+        String[] parts = line.trim().split("\\s+");
+        String commandName = parts[0];
+        String args = null;
+        if (parts.length > 1) {
+            args = line.substring(commandName.length()).trim();
+            inputManager.setBufferedLine(args);
+        }
+        Command command = commandMap.get(commandName);
+        if (command == null) {
+            return "Команда не найдена";
+        }
+        return command.execute();
     }
 }
 

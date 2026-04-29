@@ -25,6 +25,15 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Float getX() {
+        return x;
+    }
+
+    public Double getY() {
+        return y;
+    }
+
+
     public String toString() {
         return "x = " + x + ", y = " + y;
     }

@@ -31,6 +31,18 @@ public class Location {
         this.name = name;
     }
 
+    public Float getY() {
+        return y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public String toString() {
         return "x = " + x + ", y = " + y + ", location name: " + name;
     }

@@ -16,7 +16,7 @@ public class SumOfGoldenPalmCountCommand implements Command {
 
     @Override
     public String execute(){
-        return "Сумма Золотых пальм: " + Long.toString(collectionManager.sum_of_golden_palm_count());
+        return "Сумма Золотых пальм: "  + collectionManager.sum_of_golden_palm_count();
     }
 
     @Override

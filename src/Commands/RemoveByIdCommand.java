@@ -19,7 +19,6 @@ public class RemoveByIdCommand implements Command {
 
     @Override
     public String execute(){
-        System.out.println("Введите id фильма, которого вы хотите удалить: ");
         Integer removeId;
         while (true) {
             try {

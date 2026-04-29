@@ -2,7 +2,7 @@ info
 show
 add
 Avatar
-10
+100
 20
 5
 2

@@ -17,13 +17,10 @@ public class Main {
 
 
         while (true) {
-            System.out.println("\n" + "Введите команду: ");
+            System.out.println("\nВведите команду: ");
             String input = inputManager.nextLine().trim();
-            if (commandManager.commandMap.containsKey(input)){
-                System.out.println(commandManager.executeCommand(input));
-            } else {
-                System.out.println("Введите команду из доступных");
-            }
+
+            System.out.println(commandManager.executeCommand(input));
         }
     }
 }

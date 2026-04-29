@@ -59,6 +59,18 @@ public class Person implements Comparable<Person>{
         this.location = location;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public Country getNationality() {
+        return nationality;
+    }
+
     @Override
     public String toString(){
         return ("name: " + name + "\n" +

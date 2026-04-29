@@ -222,7 +222,11 @@ public class MovieMaker {
             String input = inputManager.nextLine().trim();
             try{
                 birthday = LocalDate.parse(input, formatter);
-                break;
+                if (birthday.isAfter(LocalDate.now())) {
+                    System.out.println("Дата рождения не может быть из будущего");
+                } else {
+                    break;
+                }
             } catch (DateTimeParseException e){
                 System.out.println("Ошибка, введите дату в формате dd.MM.yyyy");
             }
