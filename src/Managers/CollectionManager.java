@@ -34,32 +34,58 @@ public class CollectionManager {
         this.fileName = fileName;
         this.movieMaker = new MovieMaker(inputManager);
     }
-    public void loadFromFile(String filmName) {
-        if (filmName == null) {
-            return;
-        }
-        StringBuilder dataFile = new StringBuilder();
-        try {
-            Scanner movieScanner = new Scanner(new File(filmName));
-            while (movieScanner.hasNextLine()) {
-                dataFile.append(movieScanner.nextLine()).append("\n");
-            }
-        } catch (IOException e) {
-            System.out.println("Ошибка при чтении файла: " + e.getMessage());
-            return;
-        }
 
-        XmlMapper xmlMapper = new XmlMapper();
-        xmlMapper.findAndRegisterModules();
-        try {
-            MovieWrapper wrapper = xmlMapper.readValue(dataFile.toString(), MovieWrapper.class);
-            if (wrapper.getMovies() != null) {
-                movieList.addAll(wrapper.getMovies());
+    private boolean containsId(int id) {
+        for (Movie m : movieList) {
+            if (m.getId() == id) {
+                return true;
             }
-            System.out.println("Коллекция успешно загружена");
+        }
+        return false;
+    }
+
+    public void loadFromFile(String fileName) {
+
+        try {
+            Scanner scanner = new Scanner(new File(fileName));
+            StringBuilder xml = new StringBuilder();
+
+            while (scanner.hasNextLine()) {
+                xml.append(scanner.nextLine()).append("\n");
+            }
+
+            XmlMapper mapper = new XmlMapper();
+            mapper.findAndRegisterModules();
+
+            MovieWrapper wrapper = mapper.readValue(xml.toString(), MovieWrapper.class);
+
+            if (wrapper == null || wrapper.getMovies() == null) {
+                System.out.println("Файл пустой или битый");
+                return;
+            }
+
+            MovieValidator validator = new MovieValidator();
+
+            for (Movie m : wrapper.getMovies()) {
+
+                if (m == null) continue;
+
+                if (!validator.validate(m)) {
+                    System.out.println("INVALID: " + m.getName());
+                    continue;
+                }
+
+                if (containsId(m.getId())) continue;
+
+                movieList.add(m);
+            }
+
             updateCurrentId();
-        } catch (IOException e) {
-            System.out.println("Ошибка при парсинге XML файла: " + e.getMessage());
+
+            System.out.println("Коллекция загружена");
+
+        } catch (Exception e) {
+            e.printStackTrace(); // ВАЖНО
         }
     }
 

@@ -2,9 +2,6 @@ package Managers;
 
 import Model.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 public class MovieValidator {
 
     public boolean validate(Movie m) {
@@ -12,65 +9,32 @@ public class MovieValidator {
 
         if (m.getId() <= 0) return false;
 
-        if (m.getName() == null || m.getName().isBlank()) return false;
-
-        if (m.getCoordinates() == null || !validateCoordinates(m.getCoordinates()))
+        if (m.getName() == null || m.getName().isBlank())
             return false;
 
-        if (m.getCreationDate() == null ||
-                m.getCreationDate().isAfter(LocalDateTime.now()))
+        if (m.getOscarsCount() <= 0)
             return false;
-
-        if (m.getOscarsCount() <= 0) return false;
 
         if (m.getGoldenPalmCount() <= 0)
             return false;
 
-        if (m.getDirector() == null || !validatePerson(m.getDirector()))
+        if (m.getCreationDate() == null)
             return false;
 
-        return true;
-    }
+        if (m.getCoordinates() != null) {
+            if (m.getCoordinates().getX() != null &&
+                    m.getCoordinates().getX() > 191)
+                return false;
 
+            if (m.getCoordinates().getY() > 580)
+                return false;
+        }
 
-    private boolean validateCoordinates(Coordinates c) {
-        if (c == null) return false;
-
-        if (c.getX() == null || c.getX() > 191) return false;
-
-        if (c.getY() > 580) return false;
-
-        return true;
-    }
-
-
-    private boolean validatePerson(Person p) {
-        if (p == null) return false;
-
-        if (p.getName() == null || p.getName().isBlank())
+        if (m.getDirector() == null)
             return false;
 
-        if (p.getNationality() == null)
-            return false;
-
-        if (p.getBirthday() != null &&
-                p.getBirthday().isAfter(LocalDate.now()))
-            return false;
-
-        if (p.getLocation() != null &&
-                !validateLocation(p.getLocation()))
-            return false;
-
-        return true;
-    }
-
-
-    private boolean validateLocation(Location l) {
-        if (l == null) return false;
-
-        if (l.getY() == null) return false;
-
-        if (l.getName() != null && l.getName().isBlank())
+        if (m.getDirector().getName() == null ||
+                m.getDirector().getName().isBlank())
             return false;
 
         return true;

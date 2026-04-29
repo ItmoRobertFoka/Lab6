@@ -16,3 +16,5 @@ france
 3
 
 show
+
+execute_script script.txt

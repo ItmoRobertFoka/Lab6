@@ -1,35 +1,90 @@
 <MovieWrapper>
   <movie>
-    <id>-20</id>
+    <id>-1</id>
     <name>The Great Gatsby</name>
+
+    <coordinates>
+      <x>100.0</x>
+      <y>200.0</y>
+    </coordinates>
+
     <creationDate>11.10.2022 22:22</creationDate>
     <oscarsCount>5</oscarsCount>
     <goldenPalmCount>7</goldenPalmCount>
+
+    <genre></genre>
+    <mpaaRating></mpaaRating>
+
     <director>
       <name>Christopher Nolan</name>
       <birthday>23.10.1997</birthday>
+      <nationality>FRANCE</nationality>
+
+      <location>
+        <x>1.0</x>
+        <y>1.0</y>
+        <name></name>
+      </location>
+
+      <hairColor></hairColor>
     </director>
   </movie>
+
   <movie>
     <id>2</id>
     <name>Inception</name>
-    <creationDate/>
+
+    <coordinates>
+      <x>50.0</x>
+      <y>100.0</y>
+    </coordinates>
+
+    <creationDate>11.10.2022 22:22</creationDate>
+
     <oscarsCount>8</oscarsCount>
     <goldenPalmCount>4</goldenPalmCount>
+
     <director>
       <name>Christopher Nolan</name>
-      <birthday/>
+      <birthday>01.01.1990</birthday>
+      <nationality>FRANCE</nationality>
+
+      <location>
+        <x>0.0</x>
+        <y>0.0</y>
+        <name></name>
+      </location>
+
+      <hairColor></hairColor>
     </director>
   </movie>
+
   <movie>
     <id>3</id>
     <name>Interstellar</name>
-    <creationDate/>
+
+    <coordinates>
+      <x>70.0</x>
+      <y>150.0</y>
+    </coordinates>
+
+    <creationDate>11.10.2022 22:22</creationDate>
+
     <oscarsCount>9</oscarsCount>
     <goldenPalmCount>5</goldenPalmCount>
+
     <director>
       <name>Christopher Nolan</name>
-      <birthday/>
+      <birthday>01.01.1990</birthday>
+      <nationality>FRANCE</nationality>
+
+      <location>
+        <x>0.0</x>
+        <y>0.0</y>
+        <name></name>
+      </location>
+
+      <hairColor></hairColor>
     </director>
   </movie>
 </MovieWrapper>

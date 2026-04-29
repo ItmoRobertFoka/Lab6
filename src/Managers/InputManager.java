@@ -12,6 +12,7 @@ import java.util.Stack;
 public class InputManager {
 
     private final Stack<Scanner> scanners = new Stack<>();
+    private final Stack<String> scriptStack = new Stack<>();
     private final Scanner systemScanner;
     private boolean scriptMode = false;
     private String bufferedLine;
@@ -23,8 +24,8 @@ public class InputManager {
 
     public void pushFile(String filename) throws FileNotFoundException {
 
-        if (scriptMode) {
-            System.out.println("Ошибка: вложенные скрипты запрещены");
+        if (scriptStack.contains(filename)) {
+            System.out.println("Ошибка: обнаружен цикл скриптов: " + filename);
             return;
         }
 
@@ -35,8 +36,9 @@ public class InputManager {
             return;
         }
 
-        scriptMode = true;
+        scriptStack.push(filename);
         scanners.push(fileScanner);
+        scriptMode = true;
     }
 
     public String nextLine() {
@@ -61,6 +63,10 @@ public class InputManager {
                 return line;
             } else {
                 scanners.pop();
+
+                if (!scriptStack.isEmpty()) {
+                    scriptStack.pop();
+                }
 
                 if (scanners.size() == 1) {
                     scriptMode = false;
