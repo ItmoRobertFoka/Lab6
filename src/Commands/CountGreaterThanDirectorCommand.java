@@ -1,10 +1,8 @@
 package Commands;
 
 import Managers.CollectionManager;
-import Input.MovieMaker;
+import Maker.MovieMaker;
 import Managers.InputManager;
-
-import java.util.Scanner;
 
 /**
  * Команда, которая выводит колличество элементов коллекции,

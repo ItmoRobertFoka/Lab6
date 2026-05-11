@@ -15,7 +15,6 @@ public class ExitCommand implements Command {
 
     @Override
     public String execute(){
-        System.out.println( "Программа завершена без сохранения");
         collectionManager.exit();
         return "";
     }

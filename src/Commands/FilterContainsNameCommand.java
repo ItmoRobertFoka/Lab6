@@ -18,7 +18,6 @@ public class FilterContainsNameCommand implements Command {
 
     @Override
     public String execute() {
-        System.out.println("Введите название фильма: ");
         return collectionManager.filter_contains_name(inputManager.nextLine().trim());
     }
 

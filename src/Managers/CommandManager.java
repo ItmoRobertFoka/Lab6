@@ -31,7 +31,7 @@ public class CommandManager {
         registerCommand(new ExecuteScriptCommand(inputManager));
         registerCommand(new ExitCommand(collectionManager));
         registerCommand(new HeadCommand(collectionManager));
-        registerCommand(new AddIfMinCommand(collectionManager,inputManager));
+        registerCommand(new AddIfMinCommand(collectionManager));
         registerCommand(new RemoveGreaterCommand(collectionManager,inputManager));
         registerCommand(new SumOfGoldenPalmCountCommand(collectionManager));
         registerCommand(new CountGreaterThanDirectorCommand(collectionManager, inputManager));

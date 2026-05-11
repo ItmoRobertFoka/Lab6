@@ -9,8 +9,9 @@ public class Main {
         CollectionManager collectionManager = new CollectionManager(fileName, inputManager);
         CommandManager commandManager = new CommandManager(collectionManager, inputManager);
 
+
         if (fileName == null) {
-            System.out.println("Ошибка, переменная окружения MOVIE_FILE не задана, коллекция пустая");;
+            System.out.println("Ошибка, переменная окружения MOVIE_FILE не задана, коллекция пустая");
         } else {
             collectionManager.loadFromFile(fileName);
         }
@@ -19,7 +20,6 @@ public class Main {
         while (true) {
             System.out.println("\nВведите команду: ");
             String input = inputManager.nextLine().trim();
-
             System.out.println(commandManager.executeCommand(input));
         }
     }

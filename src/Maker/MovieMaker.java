@@ -1,4 +1,4 @@
-package Input;
+package Maker;
 
 import Managers.InputManager;
 import Model.*;
@@ -6,7 +6,6 @@ import Model.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 /**
  * Создает объекты Movie на основе пользовательского ввода

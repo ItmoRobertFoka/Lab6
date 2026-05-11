@@ -28,7 +28,7 @@ public class Movie implements Comparable<Movie> {
     public Movie(String name,
                  Coordinates coordinates,
                  int oscarsCount,
-                 Long goldenPalmCount,
+                 long goldenPalmCount,
                  MovieGenre genre,
                  MpaaRating mpaaRating,
                  Person director
@@ -37,7 +37,6 @@ public class Movie implements Comparable<Movie> {
         if (name.length() == 0) throw new IllegalArgumentException("Длинна имени должна быть больше 0");
         if (coordinates == null) throw new IllegalArgumentException("Введите значение, координаты не могут быть null");
         if (oscarsCount <= 0) throw new IllegalArgumentException("Количество оскаров должно быть больше 0");
-        if (goldenPalmCount == null) throw new IllegalArgumentException("Введите значение, количество золотых пальм не может быть null");
         if (goldenPalmCount <= 0) throw new IllegalArgumentException("Количество золотых пальм должно быть больше 0");
         if (director == null) throw new IllegalArgumentException("Введите значение, поле директор не может быть null");
 

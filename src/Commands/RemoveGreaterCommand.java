@@ -1,8 +1,7 @@
 package Commands;
 
 import Managers.CollectionManager;
-import java.util.Scanner;
-import Input.MovieMaker;
+import Maker.MovieMaker;
 import Managers.InputManager;
 
 /**

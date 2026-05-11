@@ -2,6 +2,11 @@ package Managers;
 
 import Model.*;
 
+/**
+ * Валидатор для проверки корректности объектов Movie.
+ * Используется при загрузке из XML и вводе через скрипты.
+ */
+
 public class MovieValidator {
 
     public boolean validate(Movie m) {

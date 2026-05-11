@@ -2,8 +2,7 @@ package Commands;
 
 import Managers.CollectionManager;
 import Managers.InputManager;
-import Input.MovieMaker;
-import Model.Movie;
+import Maker.MovieMaker;
 
 /**
  * Команда, отвечающая за обновление фильма по его id.

@@ -1,6 +1,6 @@
 package Commands;
 
-import Input.MovieMaker;
+import Maker.MovieMaker;
 import Managers.CollectionManager;
 import Managers.InputManager;
 
