@@ -1,0 +1,33 @@
+package Server.Commands;
+
+import Server.CollectionManager;
+
+/**
+ * Команда, которая выводит все элементы коллекции в строковом представлении.
+ */
+
+public class ShowCommand implements Command {
+    private final String name = "show";
+    private CollectionManager collectionManager;
+
+    public ShowCommand(CollectionManager collectionManager){
+        this.collectionManager = collectionManager;
+    }
+
+    @Override
+    public String execute(){
+        return "Коллекция: " + collectionManager.show();
+    }
+
+    @Override
+    public String getDescription(){
+        return "show: Выводит в стандартный поток вывода все элементы коллекции в строковом представлении";
+    }
+
+    @Override
+    public String getName(){
+        return name;
+    }
+}
+
+
