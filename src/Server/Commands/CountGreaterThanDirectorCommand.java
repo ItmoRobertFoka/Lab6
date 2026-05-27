@@ -1,8 +1,10 @@
 package Server.Commands;
 
-import Server.CollectionManager;
-import Client.MovieMaker;
-import Client.InputManager;
+import Common.Person;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
 
 /**
  * Команда, которая выводит колличество элементов коллекции,
@@ -11,16 +13,21 @@ import Client.InputManager;
 public class CountGreaterThanDirectorCommand implements Command {
     private final String name = "count_greater_than_director";
     private CollectionManager collectionManager;
-    private MovieMaker movieMaker;
 
-    public CountGreaterThanDirectorCommand(CollectionManager collectionManager, InputManager inputManager) {
+    public CountGreaterThanDirectorCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
-        this.movieMaker = new MovieMaker(inputManager);
     }
 
     @Override
-    public String execute() {
-        return "Колличество фильмов: " + collectionManager.count_greater_than_director(movieMaker.inputDirector());
+    public Response execute(Request request) {
+        try {
+            Person newDirector = (Person) request.getArgument();
+            return new Response(true,"Колличество фильмов: " + collectionManager.count_greater_than_director(newDirector),
+                    null);
+        } catch (ClassCastException e) {
+            return new Response(false, "Введите корректные данные директора", null);
+        }
+
     }
 
     @Override

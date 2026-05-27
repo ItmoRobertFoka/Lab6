@@ -1,30 +1,33 @@
 package Server.Commands;
 
-import Server.CollectionManager;
-import Client.InputManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая выводит элементы, значение поля name которых содержит заданную подстроку
  */
-public class FilterContainsNameCommand implements Command {
+public class FilterContainsNameCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "filter_contains_name";
     private CollectionManager collectionManager;
-    private InputManager inputManager;
 
-    public FilterContainsNameCommand(CollectionManager collectionManager, InputManager inputManager) {
+    public FilterContainsNameCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
-        this.inputManager = inputManager;
     }
 
     @Override
-    public String execute() {
-        String name = inputManager.nextLine().trim();
+    public Response execute(Request request) {
+        String argument =  (String) request.getArgument();
+        String name = argument.trim();
         String result = collectionManager.filter_contains_name(name);
 
         if (result.isEmpty()) {
-            return "Совпадения не найдены";
+            return new Response(false,"Совпадения не найдены", null);
         }
-        return result;
+        return new Response(true, result, null);
     }
 
     @Override

@@ -1,13 +1,18 @@
 package Server.Commands;
 
-import Server.CollectionManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая суммирует все значения поля golden_palm_count
  * у всех фильмов в коллекции.
  */
-public class SumOfGoldenPalmCountCommand implements Command {
-    private String name = "sum_of_golden_palm_count";
+public class SumOfGoldenPalmCountCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
+    private final String name = "sum_of_golden_palm_count";
     private CollectionManager collectionManager;
 
     public SumOfGoldenPalmCountCommand(CollectionManager collectionManager){
@@ -15,8 +20,8 @@ public class SumOfGoldenPalmCountCommand implements Command {
     }
 
     @Override
-    public String execute(){
-        return "Сумма Золотых пальм: "  + collectionManager.sum_of_golden_palm_count();
+    public Response execute(Request request) {
+        return new Response(true, "Сумма Золотых пальм: "  + collectionManager.sum_of_golden_palm_count(), null);
     }
 
     @Override

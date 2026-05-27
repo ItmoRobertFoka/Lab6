@@ -1,11 +1,16 @@
 package Server.Commands;
 
-import Server.CollectionManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая сохраняет коллекцию в файл.
  */
-public class SaveCommand implements Command {
+public class SaveCommand implements Command, Serializable {
+    private final static long serialVersionUID = 1L;
     private final String name = "save";
     private CollectionManager collectionManager;
 
@@ -14,8 +19,8 @@ public class SaveCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return collectionManager.save();
+    public Response execute(Request request) {
+        return new Response(true, collectionManager.save(), null);
     }
 
     @Override

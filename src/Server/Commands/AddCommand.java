@@ -1,27 +1,32 @@
 package Server.Commands;
 
 import Client.MovieMaker;
-import Server.CollectionManager;
-import Client.InputManager;
+import Common.Movie;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая добавляет фильм в коллекцию.
  * Использует динамический ввод.
  */
-public class AddCommand implements Command {
+public class AddCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "add";
     private CollectionManager collectionManager;
     private MovieMaker movieMaker;
 
-    public AddCommand(CollectionManager collectionManager, InputManager inputManager){
+    public AddCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
-        this.movieMaker = new MovieMaker(inputManager);
     }
 
    @Override
-   public String execute() {
-        collectionManager.add(movieMaker.createMovie());
-        return "Фильм успешно создан";
+   public Response execute(Request request) {
+        Movie movie = (Movie) request.getArgument();
+        collectionManager.add(movie);
+        return new Response(true, "Фильм успешно добавлен в коллекцию",null);
    }
 
     @Override

@@ -1,11 +1,16 @@
 package Server.Commands;
 
-import Server.CollectionManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, удаляющая все элементы из коллекции.
  */
-public class ClearCommand implements Command {
+public class ClearCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "clear";
     private CollectionManager collectionManager;
 
@@ -14,9 +19,9 @@ public class ClearCommand implements Command {
     }
 
     @Override
-    public String execute(){
+    public Response execute(Request request){
         collectionManager.clear();
-        return "Коллекция очищена";
+        return new Response(true, "Коллекция очищена", null);
     }
 
     @Override

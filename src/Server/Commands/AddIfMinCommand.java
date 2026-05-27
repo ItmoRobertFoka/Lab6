@@ -1,12 +1,18 @@
 package Server.Commands;
 
-import Server.CollectionManager;
+import Common.Movie;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая добавляет фильм в коллецию,
  * если его значение меньше минимального.
  */
-public class AddIfMinCommand implements Command {
+public class AddIfMinCommand implements Command, Serializable {
+    private static final long serialVesrionUID = 1L;
     private final String name = "add_if_min";
     private final CollectionManager collectionManager;
 
@@ -15,8 +21,11 @@ public class AddIfMinCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return collectionManager.add_if_min();
+    public Response execute(Request request) {
+        if (collectionManager.add_if_min((Movie) request.getArgument())) {
+            return new Response(true, "Фильм добавлен в коллекцию",null);
+        }
+        return new Response(false, "Фильм не добавлен в коллекцию тк не является минимальным", null);
     }
 
     @Override

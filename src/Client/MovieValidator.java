@@ -2,8 +2,6 @@ package Client;
 
 import Common.Movie;
 
-import java.io.Serializable;
-
 /**
  * Валидатор для проверки корректности объектов Movie.
  * Используется при загрузке из XML и вводе через скрипты.

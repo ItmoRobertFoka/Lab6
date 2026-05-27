@@ -1,29 +1,23 @@
 package Server.Commands;
 
-import Client.InputManager;
-
+import Common.Request;
+import Common.Response;
+import java.io.Serializable;
 /**
  * Команда, которая выполняет скрипт из заданного файла.
  */
-public class ExecuteScriptCommand implements Command {
-
-    private final InputManager inputManager;
-
-    public ExecuteScriptCommand(InputManager inputManager) {
-        this.inputManager = inputManager;
-    }
+public class ExecuteScriptCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
+    public ExecuteScriptCommand() {}
 
     @Override
-    public String execute() {
+    public Response execute(Request request) {
         try {
-            String fileName = inputManager.nextLine();
-
-            inputManager.pushFile(fileName);
-
-            return "Скрипт запущен";
+            String fileName = (String) request.getArgument();
+            return new Response(true,"Скрипт запущен", null);
 
         } catch (Exception e) {
-            return "Ошибка выполнения скрипта: " + e.getMessage();
+            return new Response(false,"Ошибка выполнения скрипта: " + e.getMessage(), null);
         }
     }
 

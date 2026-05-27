@@ -1,4 +1,4 @@
-package Server;
+package Server.Managers;
 
 import Client.MovieValidator;
 import Common.Movie;

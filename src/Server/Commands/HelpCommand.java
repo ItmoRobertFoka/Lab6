@@ -1,11 +1,16 @@
 package Server.Commands;
 
-import Server.CommandManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CommandManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая выводит справку по доступным командам.
  */
-public class HelpCommand implements Command {
+public class HelpCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "help";
     private CommandManager commandManager;
 
@@ -14,8 +19,12 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public String execute() {
-        return "Доступные команды: " + "\n" + commandManager.help();
+    public Response execute(Request request) {
+        StringBuilder sb = new StringBuilder();
+        for (Command command : commandManager.getCommandMap().values()) {
+            sb.append(command.getDescription()).append("\n");
+        }
+        return new Response(true, sb.toString().trim(), null);
     }
 
     @Override

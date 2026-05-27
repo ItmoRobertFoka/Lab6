@@ -1,26 +1,27 @@
 package Server.Commands;
 
-import Server.CollectionManager;
-import Client.MovieMaker;
-import Client.InputManager;
+import Common.Movie;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая удаляет все элементы коллекции, в которых поле директора превышает заданное
  */
-public class RemoveGreaterCommand implements Command {
+public class RemoveGreaterCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "remove_greater";
     private CollectionManager collectionManager;
-    private MovieMaker movieMaker;
 
-    public RemoveGreaterCommand(CollectionManager collectionManager, InputManager inputManager) {
+    public RemoveGreaterCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
-        this.movieMaker = new MovieMaker(inputManager);
     }
 
     @Override
-    public String execute() {
-        System.out.println("Введите фильм: ");
-        return collectionManager.remove_greater(movieMaker.createMovie());
+    public Response execute(Request request) {
+        return new Response(true, collectionManager.remove_greater((Movie) request.getArgument()), null);
     }
 
     @Override

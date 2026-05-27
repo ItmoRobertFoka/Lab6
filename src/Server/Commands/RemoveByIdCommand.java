@@ -1,34 +1,34 @@
 package Server.Commands;
 
-import Server.CollectionManager;
-import Client.InputManager;
+import Common.Request;
+import Common.Response;
+import Server.Managers.CollectionManager;
+
+import java.io.Serializable;
 
 /**
  * Команда, которая удаляет фильм из коллекции по его id.
  * Если в коллекции не было фильма с заданным id, коллекция останется без изменений
  */
-public class RemoveByIdCommand implements Command {
+public class RemoveByIdCommand implements Command, Serializable {
+    private static final long serialVersionUID = 1L;
     private final String name = "remove_by_id";
     private CollectionManager collectionManager;
-    private InputManager inputManager;
 
-    public RemoveByIdCommand(CollectionManager collectionManager, InputManager inputManager){
+    public RemoveByIdCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
-        this.inputManager = inputManager;
     }
 
     @Override
-    public String execute(){
+    public Response execute(Request request){
         Integer removeId;
-        while (true) {
-            try {
-                removeId = Integer.parseInt(inputManager.nextLine().trim());
-                break;
-            } catch (NumberFormatException e) {
-                System.out.println("Ошибка, введите корректное число");
-            }
+        try {
+            String argument = (String) request.getArgument();
+            removeId = Integer.parseInt(argument.trim());
+            return new Response(true, collectionManager.remove_by_id(removeId), null);
+        } catch (NumberFormatException | NullPointerException e) {
+            return new Response(false, "Ошибка, введите корректное число", null);
         }
-            return collectionManager.remove_by_id(removeId);
     }
 
     @Override
