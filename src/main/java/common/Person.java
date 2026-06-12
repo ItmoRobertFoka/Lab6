@@ -72,6 +72,10 @@ public class Person implements Comparable<Person>, Serializable {
         return nationality;
     }
 
+    public Color getHairColor() {
+        return hairColor;
+    }
+
     @Override
     public String toString(){
         return ("name: " + name + "\n" +

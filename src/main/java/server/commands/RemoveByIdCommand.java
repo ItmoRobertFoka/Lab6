@@ -8,36 +8,41 @@ import java.io.Serializable;
 
 /**
  * Команда, которая удаляет фильм из коллекции по его id.
- * Если в коллекции не было фильма с заданным id, коллекция останется без изменений
  */
 public class RemoveByIdCommand implements Command, Serializable {
     private static final long serialVersionUID = 1L;
     private final String name = "remove_by_id";
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
-    public RemoveByIdCommand(CollectionManager collectionManager){
+    public RemoveByIdCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }
 
     @Override
-    public Response execute(Request request){
-        Integer removeId;
+    public Response execute(Request request) {
         try {
             String argument = (String) request.getArgument();
-            removeId = Integer.parseInt(argument.trim());
-            return new Response(true, collectionManager.remove_by_id(removeId), null);
+            int removeId = Integer.parseInt(argument.trim());
+
+            String ownerLogin = request.getLogin();
+
+            String resultMessage = collectionManager.remove_by_id(removeId, ownerLogin);
+
+            return new Response(true, resultMessage, null);
         } catch (NumberFormatException | NullPointerException e) {
-            return new Response(false, "Ошибка, введите корректное число", null);
+            return new Response(false, "Ошибка, введите корректное числовое id", null);
+        } catch (Exception e) {
+            return new Response(false, "Ошибка выполнения команды: " + e.getMessage(), null);
         }
     }
 
     @Override
-    public String getDescription(){
-        return ("remove_by_id: Удаляет фильм по id");
+    public String getDescription() {
+        return "remove_by_id id: Удаляет фильм по id (только если вы его владелец)";
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return name;
     }
 }

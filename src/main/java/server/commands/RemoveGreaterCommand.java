@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class RemoveGreaterCommand implements Command, Serializable {
     private static final long serialVersionUID = 1L;
     private final String name = "remove_greater";
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public RemoveGreaterCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
@@ -21,12 +21,17 @@ public class RemoveGreaterCommand implements Command, Serializable {
 
     @Override
     public Response execute(Request request) {
-        return new Response(true, collectionManager.remove_greater((Movie) request.getArgument()), null);
+        Movie argumentMovie = (Movie) request.getArgument();
+        String ownerLogin = request.getLogin();
+
+        String resultMessage = collectionManager.remove_greater(argumentMovie, ownerLogin);
+
+        return new Response(true, resultMessage, null);
     }
 
     @Override
     public String getDescription() {
-        return "remove_greater: Удаляет из коллекции все элементы, превышающие заданный";
+        return "remove_greater: Удаляет из коллекции все ваши элементы, превышающие заданный";
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class ClearCommand implements Command, Serializable {
     private static final long serialVersionUID = 1L;
     private final String name = "clear";
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     public ClearCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
@@ -20,13 +20,16 @@ public class ClearCommand implements Command, Serializable {
 
     @Override
     public Response execute(Request request){
-        collectionManager.clear();
-        return new Response(true, "Коллекция очищена", null);
+        String ownerLogin = request.getLogin();
+
+        String resultMessage = collectionManager.clear(ownerLogin);
+
+        return new Response(true, resultMessage, null);
     }
 
     @Override
     public String getDescription(){
-        return "clear: Очищает коллекцию";
+        return "clear: Очищает коллекцию (удаляет только ваши элементы)";
     }
 
     @Override

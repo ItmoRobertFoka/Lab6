@@ -8,16 +8,23 @@ public class Request implements Serializable {
     private final Serializable argument;
     private final Serializable objectArgument;
 
-    public Request(String name, Serializable argument, Serializable objectArgument) {
+    private final String login;
+    private final String password;
+
+    public Request(String name, Serializable argument, Serializable objectArgument, String login, String password) {
         this.name = name;
         this.argument = argument;
         this.objectArgument = objectArgument;
+        this.login = login;
+        this.password = password;
     }
 
-    public Request(String name, Serializable argument) {
+    public Request(String name, Serializable argument, String login, String password) {
         this.name = name;
         this.argument = argument;
         this.objectArgument = null;
+        this.login = login;
+        this.password = password;
     }
 
     public String getName() {
@@ -34,5 +41,13 @@ public class Request implements Serializable {
 
     public String getCommandName() {
         return name;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

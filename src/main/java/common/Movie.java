@@ -1,15 +1,8 @@
 package common;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
-/**
- * Базовый класс, описывающий фильм
- * Содержит основные характеристики фильма
- */
-
 
 public class Movie implements Comparable<Movie>, Serializable {
     private int id;
@@ -22,6 +15,8 @@ public class Movie implements Comparable<Movie>, Serializable {
     private MovieGenre genre;
     private MpaaRating mpaaRating;
     private Person director;
+
+    private String ownerLogin;
 
     public Movie() {}
 
@@ -48,7 +43,6 @@ public class Movie implements Comparable<Movie>, Serializable {
         this.genre = genre;
         this.mpaaRating = mpaaRating;
         this.director = director;
-        this.creationDate = LocalDateTime.now();
     }
 
     public String getName(){
@@ -111,9 +105,25 @@ public class Movie implements Comparable<Movie>, Serializable {
         return creationDate;
     }
 
-
     public Person getDirector(){
         return director;
+    }
+
+    public MovieGenre getGenre() {
+        return genre;
+    }
+
+    public MpaaRating getMpaaRating() {
+        return mpaaRating;
+    }
+
+
+    public String getOwnerLogin() {
+        return ownerLogin;
+    }
+
+    public void setOwnerLogin(String ownerLogin) {
+        this.ownerLogin = ownerLogin;
     }
 
     @Override
@@ -127,11 +137,12 @@ public class Movie implements Comparable<Movie>, Serializable {
                 "goldenPalmCount: " + goldenPalmCount + "\n" +
                 "genre: " + genre + "\n" +
                 "mpaaRating: " + mpaaRating + "\n" +
-                "director: " + director);
+                "director: " + director + "\n" +
+                "owner: " + (ownerLogin == null ? "системный/нет" : ownerLogin));
     }
 
     @Override
     public int compareTo(Movie anotherMovie){
-        return Integer.compare(this.getOscarsCount(),anotherMovie.getOscarsCount());
+        return Integer.compare(this.getOscarsCount(), anotherMovie.getOscarsCount());
     }
 }

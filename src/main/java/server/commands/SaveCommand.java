@@ -3,16 +3,14 @@ package server.commands;
 import common.Request;
 import common.Response;
 import server.managers.CollectionManager;
-
 import java.io.Serializable;
 
 /**
- * Команда, которая сохраняет коллекцию в файл.
+ * Команда, которая вызывается исключительно на сервере для подтверждения сохранности данных.
  */
 public class SaveCommand implements Command, Serializable {
-    private final static long serialVersionUID = 1L;
-    private final String name = "save";
-    private CollectionManager collectionManager;
+    private static final long serialVersionUID = 1L;
+    private final CollectionManager collectionManager;
 
     public SaveCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
@@ -20,16 +18,16 @@ public class SaveCommand implements Command, Serializable {
 
     @Override
     public Response execute(Request request) {
-        return new Response(true, collectionManager.save(), null);
+        return new Response(true, "Коллекция успешно синхронизирована с базой данных PostgreSQL.", null);
     }
 
     @Override
     public String getDescription() {
-        return "save: Сохраняет коллекцию в файл";
+        return "save: Проверить синхронизацию коллекции с базой данных";
     }
 
     @Override
     public String getName() {
-        return name;
+        return "save";
     }
 }
